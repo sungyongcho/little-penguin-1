@@ -1,0 +1,10 @@
+[ 1096.232266] input: Logitech USB Receiver Mouse as /devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.1/0003:046D:C52B.001B/input/input48
+[ 1096.232426] input: Logitech USB Receiver Consumer Control as /devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.1/0003:046D:C52B.001B/input/input49
+[ 1096.604852] input: Logitech USB Receiver System Control as /devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.1/0003:046D:C52B.001B/input/input50
+[ 1096.604926] hid-generic 0003:046D:C52B.001B: input,hiddev96,hidraw2: USB HID v1.11 Mouse [Logitech USB Receiver] on usb-0000:00:06.0-2/input1
+[ 1096.616558] hid-generic 0003:046D:C52B.001C: hiddev97,hidraw3: USB HID v1.11 Device [Logitech USB Receiver] on usb-0000:00:06.0-2/input2
+[ 1096.620646] KEYBOARD CONNECTED: Hello world !
+[ 1119.116744] MAKE CLEAN: Cleaning up module.
+[ 1209.859132] loop0: detected capacity change from 0 to 8
+[ 1509.854273] loop0: detected capacity change from 0 to 8
+[ 1809.847299] loop0: detected capacity change from 0 to 8
