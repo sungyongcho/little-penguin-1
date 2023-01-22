@@ -1,1 +1,0 @@
-cmd_/home/sucho/little-penguin-1/assignment-05/main.mod := printf '%s\n'   main.o | awk '!x[$$0]++ { print("/home/sucho/little-penguin-1/assignment-05/"$$0) }' > /home/sucho/little-penguin-1/assignment-05/main.mod
