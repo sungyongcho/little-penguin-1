@@ -24,41 +24,44 @@ static int set_path(struct mount *mnt, char **buffer, int *i)
 
 	if (strcmp(mnt->mnt_parent->mnt_mountpoint->d_name.name, "/") != 0)
 		set_path(mnt->mnt_parent, buffer, i);
-	*i += snprintf(*buffer + *i, PAGE_SIZE - *i, "%s", dentry_path_raw(mnt->mnt_mountpoint, path, sizeof(path)));
+	if (strcmp(mnt->mnt_mountpoint->d_name.name, "/") != 0)
+		*i += snprintf(*buffer + *i, PAGE_SIZE - *i, "%s", dentry_path_raw(mnt->mnt_mountpoint, path, sizeof(path)));
+	else
+		*i += snprintf(*buffer + *i, PAGE_SIZE - *i, "\t%.*s", (int)strlen(dentry_path_raw(mnt->mnt_mountpoint, path, sizeof(path))) - 1, dentry_path_raw(mnt->mnt_mountpoint, path, sizeof(path)));
+
 	return *i;
 }
+
 static ssize_t mymounts_read(struct file *file, char __user *buf, size_t count, loff_t *f_pos)
 {
-	char *buffer;
-	struct mount *mnt;
-	char path[256];
-	int ret = 0;
-	int i = 0;
+    char *buffer;
+    struct mount *mnt;
+    char path[256];
+    int ret = 0;
+    int i = 0;
 
-	buffer = kmalloc(PAGE_SIZE, GFP_KERNEL);
-	if (!buffer)
-		return -ENOMEM;
+    buffer = kmalloc(PAGE_SIZE, GFP_KERNEL);
+    if (!buffer)
+        return -ENOMEM;
 
-	list_for_each_entry(mnt, &current->nsproxy->mnt_ns->list, mnt_list) {
-		if (strcmp(mnt->mnt_devname, "none") == 0)
-			continue;
-		memset(path, 0, sizeof(path));
-		if (strcmp(mnt->mnt_devname, "/dev/root") == 0) {
-			i += snprintf((&(buffer[i])), PAGE_SIZE - i, "%-8s", "root");
-		} else if (strcmp(mnt->mnt_mountpoint->d_name.name, "/") == 0) {
-			continue;
-		} else {
-			i += snprintf((&(buffer[i])), PAGE_SIZE - i, "%-8s", mnt->mnt_mountpoint->d_name.name);
-		}
-
-		set_path(mnt->mnt_parent, &buffer, &i);
-		i += snprintf((&(buffer[i])), PAGE_SIZE - i, "%s\n", dentry_path_raw(mnt->mnt_mountpoint, path, sizeof(path)));
-	}
-	ret = simple_read_from_buffer(buf, count, f_pos, buffer, strlen(buffer));
-	kfree(buffer);
-	return ret;
+    list_for_each_entry(mnt, &current->nsproxy->mnt_ns->list, mnt_list) {
+        if (strcmp(mnt->mnt_devname, "none") == 0)
+            continue;
+        memset(path, 0, sizeof(path));
+        if (strcmp(mnt->mnt_devname, "/dev/root") == 0) {
+            i += snprintf((&(buffer[i])), PAGE_SIZE - i - 1, "%-1s", "root");
+        } else if (strcmp(mnt->mnt_mountpoint->d_name.name, "/") == 0) {
+            continue;
+        } else {
+            i += snprintf((&(buffer[i])), PAGE_SIZE - i, "%s", mnt->mnt_mountpoint->d_name.name);
+        }
+        set_path(mnt->mnt_parent, &buffer, &i);
+        i += snprintf((&(buffer[i])), PAGE_SIZE - i, "\t%s\n", dentry_path_raw(mnt->mnt_mountpoint, path, sizeof(path)));
+    }
+    ret = simple_read_from_buffer(buf, count, f_pos, buffer, strlen(buffer));
+    kfree(buffer);
+    return ret;
 }
-
 
 struct proc_ops mymounts_ops = {
 	.proc_read = mymounts_read,
