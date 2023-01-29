@@ -14,6 +14,8 @@ deps_/home/sucho/little-penguin-1/assignment-09/main.mod.o := \
   include/linux/compiler_types.h \
     $(wildcard include/config/DEBUG_INFO_BTF) \
     $(wildcard include/config/PAHOLE_HAS_BTF_TAG) \
+    $(wildcard include/config/FUNCTION_ALIGNMENT) \
+    $(wildcard include/config/CC_IS_GCC) \
     $(wildcard include/config/HAVE_ARCH_COMPILER_H) \
     $(wildcard include/config/CC_HAS_ASM_INLINE) \
   include/linux/compiler_attributes.h \
@@ -117,7 +119,6 @@ deps_/home/sucho/little-penguin-1/assignment-09/main.mod.o := \
     $(wildcard include/config/X86_INTERNODE_CACHE_SHIFT) \
     $(wildcard include/config/X86_VSMP) \
   include/linux/linkage.h \
-    $(wildcard include/config/FUNCTION_ALIGNMENT) \
     $(wildcard include/config/ARCH_USE_SYM_ANNOTATIONS) \
   include/linux/export.h \
     $(wildcard include/config/MODVERSIONS) \

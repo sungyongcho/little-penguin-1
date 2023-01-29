@@ -1,0 +1,26 @@
+From 76054c8b1b33223314bba4eec5cff932f45ca801 Mon Sep 17 00:00:00 2001
+From: Sungyong Cho <sucho@student.42.fr>
+Date: Sat, 28 Jan 2023 23:20:30 +0000
+Subject: [PATCH] [PATCH] little-penguin-1 assignment-02
+
+Signed-off-by: Sungyong Cho <sucho@student.42.fr>
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index c1ead4cd2342..07d77182013b 100644
+--- a/Makefile
++++ b/Makefile
+@@ -2,7 +2,7 @@
+ VERSION = 6
+ PATCHLEVEL = 2
+ SUBLEVEL = 0
+-EXTRAVERSION = -rc5
++EXTRAVERSION = -rc5-thor_kernel
+ NAME = Hurr durr I'ma ninja sloth
+ 
+ # *DOCUMENTATION*
+-- 
+2.34.1
+

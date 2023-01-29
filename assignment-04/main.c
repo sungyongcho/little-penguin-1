@@ -8,13 +8,13 @@ MODULE_DESCRIPTION("little-penguin-1 Assignment 01");
 
 static int __init hello_world_init(void)
 {
-    printk(KERN_INFO "KEYBOARD CONNECTED: Hello world !\n");
-    return 0;
+	printk(KERN_INFO "KEYBOARD CONNECTED: Hello world !\n");
+	return 0;
 }
 
 static void __exit hello_world_cleanup(void)
 {
-    printk(KERN_INFO "MAKE CLEAN: Cleaning up module.\n");
+	printk(KERN_INFO "MAKE CLEAN: Cleaning up module.\n");
 }
 
 module_init(hello_world_init);
