@@ -1,0 +1,8 @@
+
+# User path: /etc/udev/rules.d/
+
+# bInterfaceClass, bInterfaceProtocol:
+# https://www.usb.org/sites/default/files/documents/hid1_11.pdf
+
+ACTION=="add", SUBSYSTEM=="usb", ATTR{bInterfaceClass}=="03", ATTR{bInterfaceProtocol}=="01", RUN+="/sbin/insmod /home/sucho/little-penguin-1/assignment-04/main.ko"
+
